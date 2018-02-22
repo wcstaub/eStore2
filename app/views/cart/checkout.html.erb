@@ -1,0 +1,14 @@
+<p> <%= controller.controller_name%>:checkout </p>
+<h2>Thanks for shopping with us!</h2>
+<p>Let's review your order:</p>
+
+<!-- order_items is a hash, k is the product name, v is the product quantity -->
+<% @order.order_items.each do |k,v| %>
+  <ul>
+    <li><%= Product.find(k).name %>, <%= v %></li>
+  </ul>
+<% end %>
+
+<p>
+  <strong>Order Total:</strong> <%= number_to_currency @order.grand_total %>
+</p>

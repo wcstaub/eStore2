@@ -1,3 +1,4 @@
+<p> <%= controller.controller_name%>:application.html.erb Top</p>
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,7 +9,8 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  
+  <body>
+
     <!-- Build the Navbar -->
   <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -23,55 +25,60 @@
         <%= link_to "All Items", root_path, class: "navbar-brand" %>
       </div>
 
-      <!-- added Day2 Slide3 -->
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <% @categories.each do |category| %>
-            <li><%= link_to category.name, categorical_path(category_id: category.id) %></li>
-            <% end %>
-          </ul>
-      </li>
-
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Brands<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <% @brands.each do |brand| %>
-            <li><%= link_to brand, branding_path(brand: brand) %></li>
-          <% end %>
-            <li><%= link_to 'All', root_path %></li>
-        </ul>
-      </li> 
-
-      <!-- Collect the nav links, forms, and other content for toggling -->
+    <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><%= link_to "Items By Brand", branding_path %></li>
+           <!-- added Day2 Slide3 -->
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <% @categories.each do |category| %>
+                <li><%= link_to category.name, categorical_path(category_id: category.id) %></li>
+                <% end %>
+              </ul>
+          </li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Brands<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <% @brands.each do |brand| %>
+                <li><%= link_to brand, branding_path(brand: brand) %></li>
+              <% end %>
+                <li><%= link_to 'All', root_path %></li>
+            </ul>
+          </li> 
         </ul>
       </div>
 
         <ul class="nav navbar-nav navbar-right">
-          <% if user_signed_in? %>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                <%# if current_user.avatar.blank? == false %>
-                  <%#= image_tag current_user.avatar.url, size:25, class: "user-pic-nav" %>
-                <%# end %> 
-                @<%= current_user.name %> <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
-                <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-              </ul>
-            </li>
-          <% end %>
+          <li><%= link_to "View My Orders", view_user_orders_path%>
+          </li>
+          <li><%= link_to "View Cart", view_order_path%>
+          </li>
+          <ul class="nav navbar-nav navbar-right">
+             <% if user_signed_in? %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                Hello, <%= current_user.email %> <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+                  <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+                </ul>
+              </li>
+            <% else %>
+              <li><%= link_to "Sign In", new_user_session_path %></li>
+            <% end %>
+          </ul>
+
         </ul>
       </div>
 
   </nav>
-<body>
+  <p> <%= controller.controller_name%>:application.html.erb before yeild </p>
   <div class="container">
     <%= yield %>
   </div>
+  </div>
 </body>
-</div>
+
 </html>

@@ -13,6 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 @import 'font-awesome';
+
+.well {
+	height: 200px;
+}

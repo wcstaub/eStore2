@@ -1,0 +1,20 @@
+<p> <%= controller.controller_name%>:view_user_orders </p>
+<!-- Get all orders belonging to current user -->
+<h2>My Orders</h2>
+<div>
+	<!-- For each order having the current user's id -->
+  	<% @orders.each do |order| %>
+  	<div class="col-xs-4">
+	    <div class="well">
+	    	<!-- For each item on the order's item_list -->
+		  	<!-- order_items is a hash, k is the product name, v is the product quantity -->
+			<% order.order_items.each do |k,v| %>
+			  <ul>
+			    <li><%= Product.find(k).name %>, <%= v %></li>
+			  </ul>
+			<% end %>
+		</div>
+	</div>
+	<% end %>
+</div>
+

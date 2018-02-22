@@ -1,3 +1,4 @@
+<p> <%= controller.controller_name%>:_product_loop</p>
 	 <div class="row">
 	  <% @products.each do |product| %>
 	  <div class="modal fade" id="exampleModal_<%= product.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -18,7 +19,13 @@
         	<p>made by <%= product.brand %></p>
 	      </div>
 	      <div class="modal-footer">
-	      	<!-- delete button code in here -->
+	      	<p>
+            <%= form_tag add_to_cart_path do %>
+              <%= hidden_field_tag :product_id, product.id %>
+              <%= number_field_tag :quantity, 1, placeholder: "How many?" %>
+              <%= submit_tag "Add to Cart", class: "btn btn-primary" %>
+            <% end %>
+          </p>
 	      </div>
 	    </div>
 	  </div>
