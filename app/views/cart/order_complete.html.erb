@@ -1,0 +1,7 @@
+<h2>Thank you for your order!</h2>
+
+<p>
+  Order #<%= @order.id %> will be shipping to you, 
+  <!-- may not work with .name , might need to use .email-->
+  <%= @order.user.name %> as soon as possible!
+</p>
